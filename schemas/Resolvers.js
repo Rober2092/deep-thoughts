@@ -1,14 +1,17 @@
 const { User, Thought } = require('../models');
+const { signToken } = require('../utils/auth');
 const resolvers = {
   Query: {
-    thoughts: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Thought.find(params).sort({ createdAt: -1 });
+    // logic here remains the same
+  },
+  Mutation: {
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
+
     },
-    
+    login: async () => {
     }
   }
+};
 
-  
-  module.exports = resolvers;
-  
+module.exports = resolvers;
